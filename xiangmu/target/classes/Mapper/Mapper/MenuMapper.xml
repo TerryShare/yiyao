@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		<mapper namespace="com.lyh.Dao.MenuDao">
+			<select id="findAll" resultType="com.lyh.entity.Menu_Info">
+				select * from menu_info 
+			</select>
+			<select id="findId" resultType="com.lyh.entity.Menu_Info" parameterType="int">
+				select * from menu_info where menu_id =#{Menu_id}
+			</select>
+			<select id="findf" resultType="com.lyh.entity.Menu_Info" parameterType="int">
+				select * from menu_info where prent_menu_id=0
+			</select>
+			<update id="update" parameterType="com.lyh.entity.Menu_Info">
+				update menu_Info set prent_menu_id=#{Prent_menu_id}, menu_name=#{Menu_name},menu_url=#{Menu_url} where menu_id=#{Menu_id}
+			</update>
+			<select id="getson" parameterType="int" resultType="map">
+				select a.*,b.*  from menu_info a,menu_info b where a.prent_menu_id=b.menu_id and b.menu_id=#{Menu_id}
+			</select>
+			<delete id="delete" parameterType="int">
+				delete from menu_info where menu_id=#{Menu_id}
+			</delete>
+			<insert id="insert" parameterType="com.lyh.entity.Menu_Info">
+				insert into menu_info (prent_menu_id,menu_name,menu_url) values(#{Prent_menu_id},#{Menu_name},#{Menu_url})
+			</insert>
+		</mapper>

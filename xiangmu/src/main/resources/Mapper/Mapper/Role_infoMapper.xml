@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		<mapper namespace="com.lyh.Dao.RoleDao">
+			<select id="findAll" resultType="com.lyh.entity.Role_Info" parameterType="com.lyh.entity.Role_Info">
+				select * from Role_Info where role_name like #{mhcx} and role_mark='1' limit #{currentPage},#{lineSize} 
+			</select>
+			<select id="findid" resultType="com.lyh.entity.Role_Info" parameterType="int">
+				select * from Role_Info where role_id=#{id}
+			</select>
+			<update id="update" parameterType="com.lyh.entity.Role_Info">
+				update role_Info set role_name =#{Role_name} ,role_desc=#{Role_desc} where role_id=#{Role_id}
+			</update>
+			<insert id="insert" parameterType="com.lyh.entity.Role_Info">
+				insert into Role_Info (role_name,role_desc) values (#{Role_name},#{Role_desc})
+			</insert>
+			<delete id="delete" parameterType="int">
+				update role_info set role_mark='0' where role_id=#{id}
+			</delete>
+			<select id="count" resultType="int" parameterType="String">
+				select count(*) from role_info where role_mark='1' and role_name like #{mhcx}
+			</select>
+		</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		<mapper namespace="com.lyh.Dao.SalaryDao">
+			<select id="findname" resultType="map" parameterType="com.lyh.entity.Salary_Payment">
+				select * from  salary_payment,user_info where salary_payment.user_id=user_info.user_id 
+			</select>
+			<select id="findAll" resultType="map" parameterType="com.lyh.entity.Salary_Payment">
+				select * from salary_payment, user_info where salary_payment.user_id=user_info.user_id 
+				<if test="mhcx!=null">
+					and user_name like #{mhcx}
+				</if>
+				<if test="Payment_time!=null">
+					and  Payment_time like #{Payment_time}
+				</if>
+				limit #{currentPage},#{lineSize} 
+			</select>
+			<select id="findusername" resultType="com.lyh.entity.User_Info">
+				select * from User_info
+			</select>
+			<insert id="insert" parameterType="com.lyh.entity.Salary_Payment">
+				insert into salary_payment (user_id,payment_time,payment_money) values(#{User_id},#{Payment_time},#{Payment_money})
+			</insert>
+			<select id="count" parameterType="com.lyh.entity.Salary_Payment" resultType="int">
+				select count(*) from  salary_payment,user_info where salary_payment.user_id=user_info.user_id 
+				<if test="mhcx!=null">
+					and user_info.User_name like #{mhcx}
+				</if>
+				<if test="payment_time!=null">
+					and  Payment_time like #{Payment_time}
+				</if>
+			</select>
+			
+			<select id="jq" parameterType="com.lyh.entity.Salary_Payment" resultType="String">
+				select sum(a.payment_money) from salary_payment a where a.payment_time like #{Payment_time} 	
+			</select>
+			
+			<select id="rolejq" parameterType="Map" resultType="String">
+				select sum(a.payment_money) from salary_payment a, user_info b,role_info c where a.user_id=b.user_id and b.role_id=c.role_id and c.role_id=#{Role_id} and a.payment_time like #{Payment_time}
+			</select>
+			
+			<select id="costjq" parameterType="Map" resultType="String">
+				select sum(a.expense_details_amount) from expense_details a,expense_account b where a.expense_id =b.expense_id and b.expense_time like #{Expense_time} and b.expense_state ='2' and a.cost_id=#{Cost_id}
+			</select>
+			
+			<select id="findida" resultType="com.lyh.entity.Cost_Info">
+				select cost_id from cost_info 
+			</select>
+			
+			<select id="findcosta" resultType="com.lyh.entity.Cost_Info">
+				select * from cost_info
+			</select>
+		</mapper>

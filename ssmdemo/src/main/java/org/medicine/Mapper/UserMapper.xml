@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.medicine.dao.UserDaos">
+
+	 <select id="login" parameterType="map" resultType="org.medicine.entity.panel">
+			select * from panel where name=#{name} and password =#{password}
+		</select>
+		<insert id="ptzhuce" parameterType="map">
+			insert into panel (name,password,shenfen) values (#{name},#{password},#{shenfen})
+		</insert>
+		<insert id="yszhuece" parameterType="map">
+			insert into register (name,password,pd,t1,t2,t3) values(#{name},#{password},0,#{t1},#{t2},#{t3})
+		</insert>
+
+</mapper>

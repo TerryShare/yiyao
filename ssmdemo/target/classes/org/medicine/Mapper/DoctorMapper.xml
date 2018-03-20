@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.medicine.dao.DoctorDao">
+
+	<!-- 存入留言 -->
+	<insert id="lytj" parameterType="org.medicine.entity.doctor">
+		insert into doctor (panel_id,liuyan,panel_name) values
+		(#{panel_id},#{liuyan},#{panel_name})
+	</insert>
+
+
+	<!-- 查看留言 -->
+	<select id="ckly"  parameterType="map" resultType="org.medicine.entity.doctor">
+	 select * from doctor where  panel_id=#{panel_id} 
+	</select>
+	
+	<!-- 留言详细 -->
+	<select id="tjyp"  parameterType="map" resultType="org.medicine.entity.doctor">
+	 select * from doctor where  id=#{id} 
+	</select>
+	
+	<!-- 查看所有留言 -->
+	<select id="ckss"  parameterType="map" resultType="org.medicine.entity.doctor">
+	 select * from doctor 
+	</select>
+	
+	<delete id="scly"  parameterType="int">
+	 delete from doctor where id= #{id}
+	</delete>
+	
+
+
+
+
+
+
+</mapper>

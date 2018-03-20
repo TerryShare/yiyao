@@ -36,7 +36,7 @@
 						<div class="center">
 							<h1>
 								<i class="icon-leaf green"></i> <span class="red"><!-- 智达教育 --></span> <span
-									class="white">费用管理系统</span>
+									class="white">社区快速送药系统</span>
 							</h1>
 							<h4 class="blue"></h4>
 						</div>
@@ -228,6 +228,10 @@
 						
 					}
 					if(url.length==2){
+						requestDate={"name":name,"password":password,"code":s1,"t1":url[0],"t2":url[1],"t3":""};
+						
+					}
+					if(url.length==3){
 						requestDate={"name":name,"password":password,"code":s1,"t1":url[0],"t2":url[1],"t3":url[2]};
 					}
 
@@ -253,7 +257,9 @@
 				    	   if(suc=="true"){
 				    		   if(s1==2){
 				    			   alert("注册成功,等待管理员审核!")
+				    			   window.location.href="login.jsp";
 				    		   }else{
+				    			   alert("注册成功,请登录!");
 				    			   window.location.href="login.jsp";
 				    		   }
 				    	   }else{

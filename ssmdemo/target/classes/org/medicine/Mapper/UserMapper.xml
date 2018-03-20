@@ -12,5 +12,61 @@
 		<insert id="yszhuece" parameterType="map">
 			insert into register (name,password,pd,t1,t2,t3) values(#{name},#{password},0,#{t1},#{t2},#{t3})
 		</insert>
-
+		<select id="hypcq" parameterType="int" resultType="org.medicine.entity.merdrug">
+			select * from merdrug where sjid=#{id} and shenhe="1"
+		</select>
+		<select id="hflcq" resultType="org.medicine.entity.fenlei">
+			select * from fenlei
+		</select>
+		<select id="hfldc" parameterType="int"  resultType="org.medicine.entity.fenlei">
+			select * from fenlei where id= #{id}
+		</select>
+		<update  id="ypxg" parameterType="map">
+			update  merdrug set flid=#{flid},name=#{name},price=#{price},number=#{number},shangjia=#{shangjia} where id=#{id}
+		</update >
+		<insert id="spzj" parameterType="map">
+			insert into merdrug (sjid,flid,name,price,number,shangjia,shenhe,t1,t2) values(#{sjid},#{flid},#{name},#{price},#{number},#{shangjia},"0",#{t1},#{t2}) 		
+		</insert>
+		<select id="hglycq" resultType="org.medicine.entity.panel">
+			select * from panel
+		</select>
+		<update  id="hglyxg" parameterType="map">
+			update panel set name =#{name} , password=#{password} , shenfen=#{shenfen} where id=#{id}
+		</update >
+		<delete id="yhglsc" parameterType="int">
+			delete from panel where id=#{id}
+		</delete>
+		<insert id="hglytj" parameterType="map">
+			insert into panel (name,password,shenfen) values(#{name},#{password},#{shenfen})
+		</insert>
+		<select id="glyypcq" resultType="org.medicine.entity.merdrug">
+			select * from merdrug where shenhe="0"
+		</select>
+		<update id="glyyptg" parameterType="int">
+			update merdrug set shenhe="1" where id=#{id}
+		</update>
+		<update id="glyypzf" parameterType="int">
+			update merdrug set shenhe="3" where id=#{id}
+		</update>
+		<select id="glyysdc" parameterType="int" resultType="org.medicine.entity.register">
+			select * from register where id=#{id}
+		</select>
+		<select id="glyyscq" resultType="org.medicine.entity.register">
+			select * from  register where pd=0
+		</select>
+		<update id="glyystg" parameterType="int">
+			update register set pd="1" where id=#{id}
+		</update>
+		<update id="glyyszf" parameterType="int">
+			update register set pd="3" where id=#{id}
+		</update>
+		<!-- 查询现有医师 -->
+	<select id="cxys" parameterType="map" resultType="org.medicine.entity.panel">
+		select * from panel where shenfen=#{shenfen}
+	</select>
+	
+	<!-- 根据id查医师 -->
+	<select id="ysly" parameterType="map" resultType="org.medicine.entity.panel">
+		select * from panel where id=#{id}
+	</select>
 </mapper>

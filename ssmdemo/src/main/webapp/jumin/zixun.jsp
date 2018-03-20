@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <title>社区快速送药系统</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- basic styles -->
-<link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
+<link
+	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
 
 <!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
@@ -22,9 +26,12 @@
 
 <!-- ace styles -->
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace.min.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/ace-rtl.min.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/ace.min.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/ace-rtl.min.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
 
 <!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -34,7 +41,8 @@
 
 <!-- ace settings handler -->
 
-<script src="${pageContext.request.contextPath}/assets/js/ace-extra.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/assets/js/ace-extra.min.js"></script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -45,8 +53,8 @@
 </head>
 
 <body>
-	<div class="navbar navbar-default" id="navbar" style="height:40px">
-		
+	<div class="navbar navbar-default" id="navbar" style="height: 40px">
+
 
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
@@ -61,16 +69,15 @@
 			<div class="navbar-header pull-right" role="navigation">
 				<ul class="nav ace-nav">
 					<li class="light-blue"><a data-toggle="dropdown" href="tc.do"
-						class="dropdown-toggle"> <span class="user-info"> 
-						<small>退出</small>
+						class="dropdown-toggle"> <span class="user-info"> <small><a href="tc.do">退出</a></small>
 						</span>
 					</a></li>
 				</ul>
-				
+
 			</div>
-			
+
 		</div>
-		
+
 	</div>
 
 	<div class="main-container" id="main-container">
@@ -122,13 +129,13 @@
 				<!-- #sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li><a href="typography.html"> <i class="icon-dashboard"></i>
-							<span class="menu-text">药物选购</span>
+					<li><a href="tzyw.do"> <i class="icon-dashboard"></i> <span
+							class="menu-text">药物选购</span>
 					</a></li>
 				</ul>
 				<ul class="nav nav-list">
-					<li><a href="typography.html"> <i class="icon-dashboard"></i>
-							<span class="menu-text">咨询医师</span>
+					<li><a href="tzzx.do"> <i class="icon-dashboard"></i> <span
+							class="menu-text">咨询医师</span>
 					</a></li>
 				</ul>
 				<!-- /.nav-list -->
@@ -156,47 +163,42 @@
 						}
 					</script>
 
-					<ul class="breadcrumb">
-						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
-						<li class="active">控制台</li>
-					</ul>
+
 					<!-- .breadcrumb -->
 
-					<div class="nav-search" id="nav-search">
-						<form class="form-search">
-							<span class="input-icon"> <input type="text"
-								placeholder="Search ..." class="nav-search-input"
-								id="nav-search-input" autocomplete="off" /> <i
-								class="icon-search nav-search-icon"></i>
-							</span>
-						</form>
-					</div>
 					<!-- #nav-search -->
 				</div>
 
 				<div class="page-content">
 					<div class="page-header">
 						<h1>
-							控制台 <small> <i class="icon-double-angle-right"></i> 查看
+							咨询医师<small> <i class="icon-double-angle-right"></i>
 							</small>
 						</h1>
 					</div>
 					<!-- /.page-header -->
-
 					<div class="row">
-						<div class="col-xs-12">
-							<!-- PAGE CONTENT BEGINS -->
+						<div class="col-xs-12"></div>
 
 
+						<div class="row" style="padding: 15px;">
+							<table class="table ">
+								<tr>
+									<th>医师编号</th>
+									<th>医师姓名</th>
+									<th>操作</th>
 
-							<a href="#" id="btn-scroll-up"
-								class="btn-scroll-up btn btn-sm btn-inverse"> <i
-								class="icon-double-angle-up icon-only bigger-110"></i>
-							</a>
+									<c:forEach var="y" items="${yslist}">
+										<tr>
+											<td>${y.id }</td>
+											<td>${y.name }</td>
+											<td><a href="ysly.do?id=${y.id}">联系他</a></td>
+										</tr>
+
+									</c:forEach>
+							</table>
+
 						</div>
-						<!-- /.main-container -->
-
-						<!-- basic scripts -->
 
 						<!--[if !IE]> 
 
@@ -232,8 +234,10 @@
 										.write("<script src='assets/js/jquery.mobile.custom.min.js'>"
 												+ "<"+"script>");
 						</script>
-						<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-						<script src="${pageContext.request.contextPath}/assets/js/typeahead-bs2.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/typeahead-bs2.min.js"></script>
 
 						<!-- page specific plugin scripts -->
 
@@ -241,19 +245,29 @@
 		  <script src="assets/js/excanvas.min.js"></script>
 		<![endif]-->
 
-						<script src="${pageContext.request.contextPath}/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
-						<script src="${pageContext.request.contextPath}/assets/js/jquery.ui.touch-punch.min.js"></script>
-						<script src="${pageContext.request.contextPath}/assets/js/jquery.slimscroll.min.js"></script>
-						<script src="${pageContext.request.contextPath}/assets/js/jquery.easy-pie-chart.min.js"></script>
-						<script src="${pageContext.request.contextPath}/assets/js/jquery.sparkline.min.js"></script>
-						<script src="${pageContext.request.contextPath}/assets/js/flot/jquery.flot.min.js"></script>
-						<script src="${pageContext.request.contextPath}/assets/js/flot/jquery.flot.pie.min.js"></script>
-						<script src="${pageContext.request.contextPath}/assets/js/flot/jquery.flot.resize.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/jquery.ui.touch-punch.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/jquery.slimscroll.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/jquery.easy-pie-chart.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/jquery.sparkline.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/flot/jquery.flot.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/flot/jquery.flot.pie.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/flot/jquery.flot.resize.min.js"></script>
 
 						<!-- ace scripts -->
 
-						<script src="${pageContext.request.contextPath}/assets/js/ace-elements.min.js"></script>
-						<script src="${pageContext.request.contextPath}/assets/js/ace.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/ace-elements.min.js"></script>
+						<script
+							src="${pageContext.request.contextPath}/assets/js/ace.min.js"></script>
 
 						<!-- inline scripts related to this page -->
 

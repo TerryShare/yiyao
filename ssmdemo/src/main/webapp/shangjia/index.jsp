@@ -1,5 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@page contentType="text/ html; charset=UTF-8" %>  
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -8,7 +8,6 @@
 <!-- basic styles -->
 <link href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
-
 <!--[if IE 7]>
 		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -42,6 +41,19 @@
 		<script src="assets/js/html5shiv.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+		
+		<style>
+		.wrap-inner-goods, .wrap-inner-goodss {
+   			 border: 1px solid #9A948E;
+    		 width: 45%;
+    		 height: 40%;
+    		 background: #fff;
+    		 position: fixed;
+    		 left: 30%;
+    		 top: 10%;
+			}
+		
+		</style>
 </head>
 
 <body>
@@ -62,7 +74,7 @@
 				<ul class="nav ace-nav">
 					<li class="light-blue"><a data-toggle="dropdown" href="tc.do"
 						class="dropdown-toggle"> <span class="user-info"> 
-						<small>退出</small>
+						<small><a href="tc.do">退出</a></small>
 						</span>
 					</a></li>
 				</ul>
@@ -122,13 +134,13 @@
 				<!-- #sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li><a href="typography.html"> <i class="icon-dashboard"></i>
-							<span class="menu-text">上架医用品</span>
+					<li><a href=""> <i class="icon-dashboard"></i>
+							<span class="menu-text" id="ppp">医用品维护</span>
 					</a></li>
 				</ul>
 				<ul class="nav nav-list">
-					<li><a href="typography.html"> <i class="icon-dashboard"></i>
-							<span class="menu-text">医用品维护</span>
+					<li><a href="sjyyp.do"> <i class="icon-dashboard"></i>
+							<span class="menu-text" id="hsj">上架医用品</span>
 					</a></li>
 				</ul>
 				<!-- /.nav-list -->
@@ -156,28 +168,17 @@
 						}
 					</script>
 
-					<ul class="breadcrumb">
-						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
-						<li class="active">控制台</li>
-					</ul>
+					
 					<!-- .breadcrumb -->
 
-					<div class="nav-search" id="nav-search">
-						<form class="form-search">
-							<span class="input-icon"> <input type="text"
-								placeholder="Search ..." class="nav-search-input"
-								id="nav-search-input" autocomplete="off" /> <i
-								class="icon-search nav-search-icon"></i>
-							</span>
-						</form>
-					</div>
+					
 					<!-- #nav-search -->
 				</div>
 
 				<div class="page-content">
 					<div class="page-header">
 						<h1>
-							控制台 <small> <i class="icon-double-angle-right"></i> 查看
+							医用品维护 <small> <i class="icon-double-angle-right"></i> 
 							</small>
 						</h1>
 					</div>
@@ -186,9 +187,58 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
+							 <table style="margin-left:20px;">
+							 <thead>
+       <tr>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">名称</span></td>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">分类</span></td>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">数量</span></td>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">价格</span></td>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">状态</span></td>
+           <td >操作</td>
+       </tr>
+       			</thead>
+       			 <tbody id="sideber_a">
+       			 
+       			 
+       			 
+       			 </tbody>
+       </table>
 
-
-
+<div class="wrap-inner-goods" style="display:none;" id="changediv">
+	<div style="height:30px;background-color:gray;">
+		<span style="float: right;font-size:20px;" id="cuo">×&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	</div>
+	 <table style="margin-left:20px;">
+							 <thead>
+       <tr>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">名称</span></td>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">分类</span></td>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">数量</span></td>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">价格</span></td>
+           <td ><span style="width:80px;display:inline-block;word-wrap:break-word;">状态</span></td>
+          
+       </tr>
+       			</thead>
+       	<tbody>
+       		<input type="hidden" id="thide">
+       	    <td ><input id="tname" style="width:80px;"></td>
+            <td ><select id="tselect" style="width:80px;">
+           		
+            </select></td>
+           <td ><input id="tnumber" style="width:80px;" onKeyUp="this.value=this.value.replace(/[^\.\d]/g,'');this.value=this.value.replace('.','');" ></td>
+           <td ><input id="tprice" style="width:80px;" onKeyUp="this.value=this.value.replace(/[^\.\d]/g,'');this.value=this.value.replace('.','');" ></td>
+           <td>
+           		<select id="tsj" style="width:80px;">
+           			<option value="0">下架</option>
+           			<option value="1">上架</option>
+            </select>
+           </td>
+       			 
+       			 </tbody>
+       </table>
+	<input type="button" value="提交" style="margin-left: 455px;margin-top: 35px" id="tbc">	
+</div>
 							<a href="#" id="btn-scroll-up"
 								class="btn-scroll-up btn btn-sm btn-inverse"> <i
 								class="icon-double-angle-up icon-only bigger-110"></i>
@@ -249,7 +299,7 @@
 						<script src="${pageContext.request.contextPath}/assets/js/flot/jquery.flot.min.js"></script>
 						<script src="${pageContext.request.contextPath}/assets/js/flot/jquery.flot.pie.min.js"></script>
 						<script src="${pageContext.request.contextPath}/assets/js/flot/jquery.flot.resize.min.js"></script>
-
+						<script src="${pageContext.request.contextPath}/assets/js/template-web.js"></script>
 						<!-- ace scripts -->
 
 						<script src="${pageContext.request.contextPath}/assets/js/ace-elements.min.js"></script>
@@ -543,6 +593,127 @@
 
 							})
 						</script>
+						<script type="text/html" id="seltpl"><!--这是定义模型的  -->
+									{{each list value index}}
+										<option value={{value.id}}>{{value.name}}</option> 
+									{{/each}}
+						</script>
+				<script type="text/html" id="tpl"><!--这是定义模型的  -->
+{{each list value index}}
+					<tr>
+						<input type="hidden" value={{value.id}} class="hidId">
+						<td class="hname">{{value.name}}</td>
+{{each fllist flval index}}
+				{{if value.flid==flval.id}}
+					<input type="hidden" value={{flval.id}} class="hflid">
+					<td class="hflname">{{flval.name}}</td>
+				{{/if}}
+{{/each}}
+						
+						<td class="hnumber">{{value.number}}</td>
+						<td><span class="hprice">{{value.price}}</span> 元</td>
+				{{if value.shangjia =="1"}}
+					<input type="hidden" class="hhidesj" value={{value.shangjia}}>
+					<td>上架</td>
+				{{/if}}
+						
+				{{if value.shangjia =="0"}}
+					<input type="hidden" class="hhidesj" value={{value.shangjia}}>
+					<td>下架</td>
+				{{/if}}
+						<td>
+						
+						<input type="button" class="byno" value="修改"></td>
+					</tr>
+   {{/each}}					
+				</script>
+	<script>
+	
+	var fllist=[];
+		  $.ajax({
+        type: "post",
+        dataType: 'json',//默认转化对象
+        async:false,
+        url:  "hcqyp.do", //提交到一般处理程序请求数据
+        error: function(){
+        	alert("请求失败,轻语管理员联系");
+        },
+        success: function(data) {
+        fllist=data.yp;
+    		var tplhtml = template('tpl', {
+                list: data.yp, fllist:data.fenlei
+            });
+    		var seltpl = template('seltpl', {
+                list:data.fenlei
+            });
+    		$("#tselect").html(seltpl);
+    		$("#sideber_a").html(tplhtml);
+        }
+    })
+    
+   
+ 	$(".byno").click(function(){
+	//获取  id
+ 		$("#changediv").show();
+ 		//获取 一些内容
+ 		var id=$(this).parent().parent().find(".hidId").val();
+ 		var name=$(this).parent().parent().find(".hname").html();
+ 		var flid=$(this).parent().parent().find(".hflid").val();
+ 		var number=$(this).parent().parent().find(".hnumber").html();
+ 		var price=$(this).parent().parent().find(".hprice").html();
+ 		var shangjia=$(this).parent().parent().find(".hhidesj").val();
+ 		$("#thide").val(id);
+ 		$("#tname").val(name);
+ 		$("#tselect").val(flid);
+ 		$("#tnumber").val(number);
+ 		$("#tprice").val(price);
+ 		$("#tsj").val(shangjia);
+ 		
+ 	})
+ $("#cuo").click(function(){
+	 $("#changediv").hide();
+ })
+ 
+ $("#tbc").click(function(){
+	 var name=$("#tname").val();
+	 var num=$("#tnumber").val();
+	 var price=$("#tprice").val();
+	 if(name==""||num==""||price==""){
+		 alert("请填完整信息!")
+		 return
+	 }
+	 var redata={};
+	 redata["id"]=$("#thide").val();
+	 redata["name"]=name;
+	 redata["flid"]=$("#tselect").val()
+	 redata["number"]=num;
+	 redata["price"]=price;
+	 redata["shangjia"]=$("#tsj").val();
+	 var str=JSON.stringify(redata);
+	  $.ajax({
+	        type: "get",
+	        dataType: 'json',//默认转化对象
+	        data:{"requestDate":str},
+	        url:  "spxg.do", //提交到一般处理程序请求数据
+	        error: function(){
+	        	alert("请求失败,轻语管理员联系");
+	        },
+	        success: function(data) {
+	       		var suc=data.suc;
+	       		if(suc=="false"){
+	       			alert("修改失败")
+	       		}else{
+	       			alert("修改成功");
+	       			window.location.href="logJump.do";
+	       		}
+	        }
+	    })
+	 
+ })
+ 	$("#hsj").click(function(){
+ 		window.location.href="sjyyp.do";
+ 	})
+	</script>
 </body>
 </html>
 

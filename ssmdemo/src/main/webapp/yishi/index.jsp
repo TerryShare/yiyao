@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -62,7 +63,7 @@
 				<ul class="nav ace-nav">
 					<li class="light-blue"><a data-toggle="dropdown" href="user/tc.do"
 						class="dropdown-toggle"> <span class="user-info"> 
-						<small>退出</small>
+						<small><a href="tc.do">退出</a></small>
 						</span>
 					</a></li>
 				</ul>
@@ -122,7 +123,7 @@
 				<!-- #sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					<li><a href="typography.html"> <i class="icon-dashboard"></i>
+					<li><a href="ckly.do"> <i class="icon-dashboard"></i>
 							<span class="menu-text">查看留言</span>
 					</a></li>
 				</ul>
@@ -151,53 +152,44 @@
 						}
 					</script>
 
-					<ul class="breadcrumb">
-						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
-						<li class="active">控制台</li>
-					</ul>
+					
 					<!-- .breadcrumb -->
 
-					<div class="nav-search" id="nav-search">
-						<form class="form-search">
-							<span class="input-icon"> <input type="text"
-								placeholder="Search ..." class="nav-search-input"
-								id="nav-search-input" autocomplete="off" /> <i
-								class="icon-search nav-search-icon"></i>
-							</span>
-						</form>
-					</div>
 					<!-- #nav-search -->
 				</div>
 
 				<div class="page-content">
 					<div class="page-header">
 						<h1>
-							控制台 <small> <i class="icon-double-angle-right"></i> 查看
+							留言记录<small> <i class="icon-double-angle-right"></i> 
 							</small>
 						</h1>
 					</div>
 					<!-- /.page-header -->
 
-					<div class="row">
-						<div class="col-xs-12">
-							<!-- PAGE CONTENT BEGINS -->
+					<div class="row" style="padding: 15px;">
+							<table class="table ">
+								<tr>
+									<th>留言编号</th>
+									<th>留言人</th>
+									<th>留言</th>
 
+									<c:forEach var="ly" items="${lylist}">
+										<tr>
+											<td>${ly.id }</td>
+											<td>${ly.panel_name }</td>
+											<td>${ly.liuyan }</td>
+											<td><a href="tjyp.do?id=${ly.id}">推荐药品</a></td>
+										</tr>
 
+									</c:forEach>
+							</table>
 
-							<a href="#" id="btn-scroll-up"
-								class="btn-scroll-up btn btn-sm btn-inverse"> <i
-								class="icon-double-angle-up icon-only bigger-110"></i>
-							</a>
 						</div>
-						<!-- /.main-container -->
-
-						<!-- basic scripts -->
-
-						<!--[if !IE]> 
 
 						<script
 							src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
--->
+
 						<!-- <![endif]-->
 
 						<!--[if IE]>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.medicine.dao.MerdrugDao">
+
+	<!-- 查询所有医药 -->
+	<select id="findmd" parameterType="map" resultType="org.medicine.entity.merdrug">
+		select * from merdrug where  shenhe="1" and shangjia="1"
+	</select>
+	
+	<!-- 根据id查医药 -->
+	<select id="gmyw" parameterType="map" resultType="org.medicine.entity.merdrug">
+		select * from merdrug where id=#{id} 
+	</select>
+	
+	<!-- 查询所有医药 -->
+	<select id="ypgl" parameterType="map" resultType="org.medicine.entity.merdrug">
+		select * from merdrug 
+	</select>
+	
+	<!-- 上下架  -->
+	<update id="sjyp" parameterType="org.medicine.entity.merdrug">
+			update  merdrug set shenhe=#{shenhe} where id=#{id}
+	</update>
+	
+	
+		
+	<delete id="scyp"  parameterType="int">
+	  delete from merdrug where id= #{id}
+	</delete>
+	
+	
+	
+
+
+</mapper>
